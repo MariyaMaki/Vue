@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      .text-red {
+        color: red;
+      }
+
+      .text-green {
+        color: green;
+      }
+    </style> -->
+  </head>
+
+  <body class="h-full grid place-items-center">
+    <div id="app">
+      <!-- <p>
+        <input type="text" v-model="greeting" />
+         v-model sert a listening et modifier
+      </p>
+
+      <p>{{greeting}} ({{ greeting.length}})</p>
+
+      <button :class="active? 'text-red' : 'text-green'" v-on:click="toggle">
+        Click Me
+      </button> 
+       lier l'attribut nommé "class" au résultat "text-green" de cette expression "buttonClasses" // directive used to add a click event listener to an element
+        ECRITURE: v-bind:class ou :class // v-on ou @-->
+
+      <section v-show="inProgressAssignments.length">
+        <h2 class="font-bold mb-2">In Progress</h2>
+        <ul>
+          <li v-for="assignment in inProgressAssignments" :key="assignment.id">
+            <!-- v-for is for rendering lists of items onto the browser // The :key attribute tells Vue how your data relates to the HTML elements it's rendering to the screen. When your data changes, Vue uses these keys to know which HTML elements to remove or update, and if it needs to create any new ones-->
+            <label
+              >{{assignment.name}}
+              <input type="checkbox" v-model="assignment.complete"
+            /></label>
+            <!-- v-model is a directive that provides two-way data binding between an input and form data or between two components -->
+          </li>
+        </ul>
+      </section>
+
+      <section v-show="completedAssignments.length" class="mt-8">
+        <!-- v-show : Toggle's the element's display CSS property based on the truthy-ness of the expression value.This directive triggers transitions when its condition changes.
+        // v-if Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. -->
+        <h2 class="font-bold mb-2">Completed</h2>
+        <ul>
+          <li v-for="assignment in completedAssignments" :key="assignment.id">
+            <!-- rendering lists of items onto the browser -->
+            <label
+              >{{assignment.name}}
+              <input type="checkbox" v-model="assignment.complete"
+            /></label>
+            <!-- v-model is a directive that provides two-way data binding between an input and form data or between two components -->
+          </li>
+        </ul>
+      </section>
+    </div>
+    <!-- Vue a accès seulement à ce qui est dans cette div et rien en dehors grace au script dans le body -->
+
+    <script>
+      let app = {
+        data() {
+          return {
+            assignments: [
+              {
+                name: "Finish project",
+                complete: false,
+                id: 1,
+              },
+              {
+                name: "Read chapter",
+                complete: false,
+                id: 2,
+              },
+              {
+                name: "Turn in homework",
+                complete: false,
+                id: 3,
+              },
+            ],
+          };
+        },
+
+        computed: {
+          inProgressAssignments() {
+            return this.assignments.filter(
+              (assignment) => !assignment.complete
+            );
+          },
+          completedAssignments() {
+            return this.assignments.filter((assignment) => assignment.complete);
+          },
+        },
+      };
+      Vue.createApp(
+        app
+        // { data() {
+        //   return {
+        //     greeting: "What is up?",
+        //     buttonClasses: "text-green",
+        //     active: false,
+        //   }; // ceci est un objet
+        // },
+        // methods: {
+        //   toggle() {
+        //     this.active = !this.active;
+        //   },
+        // },}
+      ).mount("#app"); //structure Vue components
+    </script>
+  </body>
+</html>
